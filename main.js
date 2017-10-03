@@ -96,22 +96,29 @@ let formData = [
 
 
 // -------- Your Code Goes Below this Line --------
-for(i=0; i<=formData.length;i++){
+let container = document.getElementById("fields");
+for(i=0; i<formData.length;i++){
 
     if(formData[i].options.length == 0){
   let input = document.createElement("input");
-  let container = document.getElementById("fields");
+  //let container = document.getElementById("fields");
   input.setAttribute("type", formData[i].type);
   input.setAttribute("placeholder", formData[i].label);
   input.setAttribute("id", formData[i].id);
   input.setAttribute("icon", formData[i].icon);
   container.appendChild(input);
 } else{
-  let input = document.createElement("input");
-  let container = document.getElementById("fields");
-  input.setAttribute("type", formData[i].type);
-  input.setAttribute("label", formData[i].label);
-  input.setAttribute("id",formData[i].id);
-  container.appendChild(input);
+  console.log("select");
+  
+   let select = document.createElement("select");
+  select.placeholder = formData[i].label;
+    for (var j = 0; j < formData[i].options.length; j++){
+      let option = document.createElement("option");
+      option.setAttribute("label", formData[i].options[j].label);
+      option.setAttribute("value", formData[i].options[j].value);
+      select.appendChild(option);
+
+    }
+    container.appendChild(select);
 }
 };
